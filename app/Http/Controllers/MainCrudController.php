@@ -20,16 +20,6 @@ class MainCrudController extends Controller
 
     }
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {        
-        $this->checkPermission('view');  
-        $allData=$this->model::all();
-        return view('admin.'.$this->permissions.'.index', [$this->permissions=>$allData]);  
-    }/**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

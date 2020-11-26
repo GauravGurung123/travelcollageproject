@@ -22,10 +22,23 @@
                             <tbody>
                             @foreach($countries as $country)
                                 <tr>
-                                    <td>Nepal</td>
+                                    <td>{{$country->name}}</td>
                                     <td class="d-flex">
-                                        @include('admin.partials.edit-button', ['slug'=>'countries', 'id'=>$country->id])
-                                        @include('admin.partials.delete-button', ['slug'=>'countries', 'id'=>$country->id])
+                                        {{-- {-- @can('update-'.$slug) {{ route('admin.countries.edit') }}      --}} 
+                                        <a href=""
+                                            class="btn btn-sm btn-success-outline" data-original-title="Delete">
+                                            <i class="ti-pencil" aria-hidden="true"></i></a>
+                                        {{-- @endcan --}}
+                                        {{-- {{route('admin.countries.destroy')}} --}}
+                                        {{-- @can('delete-'.$slug)       --}}
+                                        <form action="" method="post">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                                @csrf
+                                        <button data-toggle="tooltip" data-original-title="Delete" 
+                                        type="submit" id="btnDelete" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger-outline">
+                                            <i class="ti-trash" aria-hidden="true"></i></button>
+                                            </form> 
+                                        {{-- @endcan --}}
                                     </td>
                                 </tr>
                             @endforeach

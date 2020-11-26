@@ -11,26 +11,26 @@
     <title>traveltour</title>
 
     <!-- Bootstrap 4.0-->
-    <link rel="stylesheet" href="assets/vendor_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap/dist/css/bootstrap.min.css') }}">
 
     <!-- Bootstrap extend-->
-    <link rel="stylesheet" href="asset/css/bootstrap-extend.css">
-    <link rel="stylesheet" href="assets/vendor_components/sweetalert/sweetalert.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap-extend.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor_components/sweetalert/sweetalert.css') }}">
 
     <!-- theme style -->
-    <link rel="stylesheet" href="assets/css/master_style.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/master_style.css">
 
     <!-- NeoX Admin skins -->
-    <link rel="stylesheet" href="assets/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/skins/_all-skins.css">
 
-	<link rel="stylesheet" href="assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+	<link rel="stylesheet" href="{{ asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href=" assets/css/app.css ">
+    
+    <link rel="stylesheet" href="{{ asset('css/app.css') }} ">
 
 
 </head>
@@ -44,16 +44,16 @@
             <span class="sr-only">Toggle navigation</span>
         </a>
         <!-- Logo -->
-        <a href=" route('home') " class="logo">
+        <a href="{{ route('home') }}" class="logo">
             <!-- mini logo -->
             <b class="logo-mini">
-                <span class="light-logo"><img src=" assets/images/logo-light.png" alt="logo"></span>
-                <span class="dark-logo"><img src=" assets/images/logo-dark.png" alt="logo"></span>
+                <span class="light-logo"><img src="{{ asset('images/logo-light.png') }}" alt="Light logo"></span>
+                <span class="dark-logo"><img src="{{ asset('images/logo-dark.png') }}" alt="Dark logo"></span>
             </b>
             <!-- logo-->
             <span class="logo-lg">
-			  <img src=" assets/images/logo-dark.png" alt="logo" class="light-logo">
-			  <img src=" assets/images/logo-dark.png" alt="logo" class="dark-logo">
+			  <img src="{{ asset('images/logo-dark.png') }}" alt="light logo" class="light-logo">
+			  <img src="{{ asset('images/logo-dark.png') }}" alt="Dark logo" class="dark-logo">
 		  </span>
         </a>
         <!-- Header Navbar -->
@@ -137,13 +137,13 @@
                             <li class="user-body">
                                 <div class="row no-gutters">
                                     <div class="col-12 text-left">
-                                        <a href=" route('profile.show') "><i class="ion ion-person"></i> My Profile</a>
+                                        <a href="route('profile.show')"><i class="ion ion-person"></i> My Profile</a>
                                     </div>
 
 
                                     <div role="separator" class="divider col-12"></div>
                                     <div class="col-12 text-left">
-                                        <a href=" route('logout') "><i class="fa fa-power-off"></i> Logout</a>
+                                        <a href="{{ route('logout') }}"><i class="fa fa-power-off"></i> Logout</a>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -371,35 +371,36 @@
 </div>
 <!-- ./wrapper -->
 
-
-
 <!-- jQuery 3 -->
-<script src=" asset/vendor_components/jquery/dist/jquery.js"></script>
+<script src="{{ asset('assets') }}/vendor_components/jquery/dist/jquery.js"></script>
 
 <!-- popper -->
-<script src=" asset/vendor_components/popper/dist/popper.min.js"></script>
+<script src="{{ asset('assets') }}/vendor_components/popper/dist/popper.min.js"></script>
 
 <!-- Bootstrap 4.0-->
-<script src=" asset/vendor_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="{{ asset('assets') }}/vendor_components/bootstrap/dist/js/bootstrap.js"></script>
 
 <!-- Slimscroll -->
-<script src=" asset/vendor_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="{{ asset('assets') }}/vendor_components/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 <!-- FastClick -->
-<script src=" asset/vendor_components/fastclick/lib/fastclick.js"></script>
+<script src="{{ asset('assets') }}/vendor_components/fastclick/lib/fastclick.js"></script>
 <!-- DataTables -->
-<script src="assets/vendor_components/datatable/datatables.min.js"></script>
+<script src="{{ asset('assets/vendor_components/datatable/datatables.min.js') }}"></script>
 <!-- NeoX Admin App -->
-<script src="assets/js/template.js"></script>
-<script src="assets/vendor_components/sweetalert/sweetalert.min.js"></script>
-<script src=" assets/vendor_components/ckeditor/ckeditor.js"></script>
+<script src="{{ asset('assets') }}/js/template.js"></script>
+<script src="{{ asset('assets/vendor_components/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('/assets/vendor_components/ckeditor/ckeditor.js')}}"></script>
 	<!-- NeoX Admin for editor -->
-	<script srasset('/assets/js/pages/editor.js')   "></script>
+	<script src="{{asset('/assets/js/pages/editor.js')}}"></script>
 
 <!-- NeoX Admin dashboard demo (This is only for demo purposes) -->
-<script src=" asset('assets')/js/pages/dashboard2.js"></script>
-<script srcasset/assets/js/pages/datable.js') "></script>
-<!-- NeoX Adminpurposes -->
-<script emo.jss/</script>
-sod>
-<
+<script src="{{ asset('assets') }}/js/pages/dashboard2.js"></script>
+<script src="{{ asset('assets/js/pages/data-table.js') }}"></script>
+<!-- NeoX Admin for demo purposes -->
+<script src="{{ asset('assets') }}/js/demo.js"></script>
+
+@stack('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+</html>

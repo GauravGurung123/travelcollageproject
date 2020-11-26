@@ -3,18 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Country;
-use App\Http\Controllers\MainCrudController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CountryController extends MainCrudController
+class CountryController extends Controller
 {
-    public $model;
-    const permissionslug = 'countries';
+     /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function index()
+   {
+        $countries=Country::all();
+       return view('admin.countries.index', compact('countries'));
 
-    public function __construct()
-    {
-        parent::__construct(Country::class);
-    }
+   }
+
+   /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function create()
+   {
+       return view('admin.countries.add-new');
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -24,7 +38,13 @@ class CountryController extends MainCrudController
      */
     public function store(Request $request)
     {
-        //
+        Country::create([
+            'name' => $request->name,    
+            'image' => $request->image,
+            'description' => $request->description
+        ]);
+        
+        return redirect()->route('admin.countries.index');
     }
 
     /**
@@ -46,7 +66,8 @@ class CountryController extends MainCrudController
      */
     public function edit($id)
     {
-        //
+        $countries=Country::where('id',$id)->firstOrFail();
+        return view('admin.countries.edit', compact('countries'));
     }
 
     /**
@@ -58,7 +79,14 @@ class CountryController extends MainCrudController
      */
     public function update(Request $request, $id)
     {
-        //
+        $countries=Country::find($id);
+        $countries->update([
+            'name' => $request->name,    
+            'image' => $request->image,
+            'description' => $request->description
+        ]);
+
+        return redirect()->back()->withSuccess('Your country has been updated successfully');
     }
 
     /**

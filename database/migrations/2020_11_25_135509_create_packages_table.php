@@ -16,7 +16,6 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
             $table->string('image')->nullable();
             $table->float('amount', 8, 2);
             $table->foreignId('country_id');

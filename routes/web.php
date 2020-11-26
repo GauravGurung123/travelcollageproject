@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\CountryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,18 +27,22 @@ Auth::routes();
 // 'as'=>'admin.',
 // 'middleware'=>['web']
 // ]);
+// Route::get('country', [UserController::class, 'index']);
+// Route::resources([
+//     'index' => CountryController::class,
+// ]);
 
 
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('admin.index');
 //})->name('dashboard');
-Route::group(['namespace' => 'App\Http\Controllers\Admin\DashboardController','prefix'=>'dashboard','as'=>'admin.','middleware'=>['auth:web', 'verified']], function () {
+Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middleware'=>['auth:web', 'verified']], function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
     Route::resource('countries','CountryController');
-    Route::resource('packages','PzckageController');
+    Route::resource('packages','PackageController');
     Route::resource('blogs','BlogController');
     Route::resource('visitors','VisitorController');
     Route::resource('testimonials','TestimonialController');
@@ -48,3 +52,4 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin\DashboardController','p
     Route::resource('users','AdminController');
     Route::resource('settings','SettingController');
 });
+
