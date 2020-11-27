@@ -37,7 +37,7 @@
             {{-- @can('view-skills') --}}
             <li>
                 <a href="{{ route('admin.packages.index') }}">
-                    <i class="iconsmind-Geo2"></i> <span>packages</span>
+                    <i class="iconsmind-Geo2"></i> <span>Packages</span>
                 </a>
             </li>
             {{-- @endcan --}}

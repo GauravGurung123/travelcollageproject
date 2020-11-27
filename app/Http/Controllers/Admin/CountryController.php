@@ -97,6 +97,6 @@ class CountryController extends Controller
     public function destroy($id)
     {
         Country::where('id',$id)->first()->delete();
-        return redirect()->back()->withSuccess('Your User has been Deleted');
+        return redirect()->back()->withSuccess('Your Country has been Deleted');
     }
 }

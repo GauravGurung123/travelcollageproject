@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Package;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -14,7 +15,9 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        $packages=Package::all();
+        return view('admin.packages.index', compact('packages'));
+ 
     }
 
     /**
@@ -24,7 +27,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.packages.add-new');
     }
 
     /**
@@ -35,7 +38,14 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Package::create([
+            'name' => $request->name,    
+            'amount' => $request->amount,    
+            'image' => $request->image,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('admin.packages.index');
     }
 
     /**
@@ -56,8 +66,9 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {        
+        $packages=Package::where('id',$id)->firstOrFail();
+        return view('admin.packages.edit', compact('packages'));
     }
 
     /**
@@ -68,8 +79,15 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {        
+        $packages=Package::find($id);
+        $packages->update([
+            'name' => $request->name,  
+            'amount' => $request->amount,    
+            'image' => $request->image,
+            'description' => $request->description
+        ]);
+        return redirect()->back()->withSuccess('Your package has been updated successfully');
     }
 
     /**
@@ -80,6 +98,7 @@ class PackageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Package::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your package has been Deleted');
     }
 }

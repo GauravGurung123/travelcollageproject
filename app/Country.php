@@ -11,6 +11,13 @@ class Country extends Model
     use ImageHelpersTrait;
 
     protected $guarded=['id'];
+
+
+    public function packages()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
     
     // |--------------------------------------------------------------------------
     // | MUTATORS
