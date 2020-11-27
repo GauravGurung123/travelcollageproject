@@ -24,14 +24,14 @@
                                 <tr>
                                     <td>{{$country->name}}</td>
                                     <td class="d-flex">
-                                        {{-- {-- @can('update-'.$slug) {{ route('admin.countries.edit') }}      --}} 
-                                        <a href=""
+                                        {{-- {-- @can('update-'.$slug)       --}} 
+                                        <a href="{{ route('admin.countries.edit', $country->id)}}"
                                             class="btn btn-sm btn-success-outline" data-original-title="Delete">
                                             <i class="ti-pencil" aria-hidden="true"></i></a>
                                         {{-- @endcan --}}
-                                        {{-- {{route('admin.countries.destroy')}} --}}
+                                        {{--  --}}
                                         {{-- @can('delete-'.$slug)       --}}
-                                        <form action="" method="post">
+                                        <form action="{{route('admin.countries.destroy', $country->id) }}" method="post">
                                             <input type="hidden" name="_method" value="DELETE">
                                                 @csrf
                                         <button data-toggle="tooltip" data-original-title="Delete" 

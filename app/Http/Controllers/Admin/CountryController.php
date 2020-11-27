@@ -43,7 +43,7 @@ class CountryController extends Controller
             'image' => $request->image,
             'description' => $request->description
         ]);
-        
+
         return redirect()->route('admin.countries.index');
     }
 
@@ -85,7 +85,6 @@ class CountryController extends Controller
             'image' => $request->image,
             'description' => $request->description
         ]);
-
         return redirect()->back()->withSuccess('Your country has been updated successfully');
     }
 
@@ -97,6 +96,7 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Country::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your User has been Deleted');
     }
 }
