@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Testemonial;
 use Illuminate\Http\Request;
 
 class TestemonialController extends Controller
@@ -14,7 +15,8 @@ class TestemonialController extends Controller
      */
     public function index()
     {
-        //
+        $testemonials=Testemonial::all();
+        return view('admin.testemonials.index', compact('testemonials'));
     }
 
     /**
@@ -24,7 +26,7 @@ class TestemonialController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.testemonials.add-new');
     }
 
     /**
@@ -35,7 +37,13 @@ class TestemonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        Testemonial::create([
+            'name' => $request->name,
+            'image' => $request->image,    
+            'content' => $request->content,
+        ]);
+        return redirect()->route('admin.testemonials.index');
     }
 
     /**
@@ -57,7 +65,8 @@ class TestemonialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $testemonials=Testemonial::where('id',$id)->firstOrFail();
+        return view('admin.testemonials.edit', compact('testemonials'));
     }
 
     /**
@@ -69,17 +78,25 @@ class TestemonialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->content);
+        $testemonials=Testemonial::find($id);
+        $testemonials->update([
+            'name' => $request->name,
+            'image' => $request->image,
+            'content' => $request->content,
+        ]);
+        return redirect()->back()->withSuccess('Your Testemonial has been updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+    
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        Testemonial::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your Testemonial has been Deleted');
     }
 }

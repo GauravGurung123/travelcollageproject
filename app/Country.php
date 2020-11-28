@@ -31,13 +31,13 @@ class Country extends Model
         $attribute_name = "image";
         $disk = config('filesystems.default');
         $destination_path = "uploads/country";
-        $sizes=[[200,140,'thumbnail'],[360,240,'small'],[760,400,'medium']];
+        $sizes=[[200,140,'thumbnail'],[150,26,'line'],[360,240,'small'],[760,400,'medium']];
         $this->uploadFileToDiskWithResize($value, $attribute_name, $disk, $destination_path,$sizes);
 
     }
-    /**
-     * @return placeholder image if image by sie
-     */
+     /**
+      * @return placeholder image if image by sie
+      */
     public function getThumbnailImageAttribute()
     {
         if(!$this->image){
@@ -45,6 +45,14 @@ class Country extends Model
         }
         
         return $this->getThumbImage($this->image,'thumbnail');
+    }
+    public function getLineImageAttribute()
+    {
+        if(!$this->image){
+            return $this->front_image;
+        }
+        
+        return $this->getThumbImage($this->image,'line');
     }
     public function getSmallImageAttribute()
     {

@@ -12,7 +12,7 @@
        <div class="box-body">
          <div class="row">
            <div class="col">
-           <form method="POST" action="{{ route('admin.countries.store') }}">
+           <form method="POST" action="{{ route('admin.countries.store') }}" enctype="multipart/form-data">
             @csrf
                 <div class="form-group">
                     <h5>Name <span class="text-danger">*</span></h5>

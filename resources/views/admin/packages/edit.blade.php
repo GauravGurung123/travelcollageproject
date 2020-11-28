@@ -21,6 +21,22 @@
                         <input type="text" value="{{$packages->name}}" name="name" class="form-control" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                 </div>
                 <div class="form-group">
+                  <h5>Choose Country<span class="text-danger">*</span></h5>
+                  <div class="controls">
+                    <select name="skill_id" class="form-control" required>
+                      <option disabled>Select preferred job catagory</option>
+                      @foreach($countries as $country)
+                          <option {{ $packages->country_id == $country->id ? 'selected' : '' }} value="{{ $country->id }}">{{ $country->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+              </select>
+                <div class="form-group">
+                  <h5>Durations <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                      <input type="text" name="duration" value="{{$packages->duration}}" class="form-control" placeholder="_ Days and _ Nights" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+              </div>
+                <div class="form-group">
                   <h5>Price <span class="text-danger">*</span></h5>
                   <div class="controls">
                       <input type="number" value="{{$packages->amount}}" name="amount" step="0.01" class="form-control" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>

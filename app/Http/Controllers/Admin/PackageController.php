@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Country;
 use App\Http\Controllers\Controller;
 use App\Package;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class PackageController extends Controller
      */
     public function index()
     {
+
         $packages=Package::all();
         return view('admin.packages.index', compact('packages'));
  
@@ -27,7 +29,8 @@ class PackageController extends Controller
      */
     public function create()
     {
-       return view('admin.packages.add-new');
+        $countries=Country::all();
+        return view('admin.packages.add-new', compact('countries'));
     }
 
     /**
@@ -40,6 +43,8 @@ class PackageController extends Controller
     {
         Package::create([
             'name' => $request->name,    
+            'duration' => $request->duration,    
+            'country_id' => $request->country_id,    
             'amount' => $request->amount,    
             'image' => $request->image,
             'description' => $request->description
@@ -66,9 +71,10 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        
+    {  
+        $countries=Country::all();      
         $packages=Package::where('id',$id)->firstOrFail();
-        return view('admin.packages.edit', compact('packages'));
+        return view('admin.packages.edit', compact('packages','countries'));
     }
 
     /**
@@ -83,6 +89,8 @@ class PackageController extends Controller
         $packages=Package::find($id);
         $packages->update([
             'name' => $request->name,  
+            'duration' => $request->duration,    
+            'country_id' => $request->country_id,    
             'amount' => $request->amount,    
             'image' => $request->image,
             'description' => $request->description

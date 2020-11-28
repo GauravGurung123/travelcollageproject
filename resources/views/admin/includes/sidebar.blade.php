@@ -50,7 +50,7 @@
             {{-- @endcan --}}
             {{-- @can('view-testimonials') --}}
             <li>
-                <a href="{{ route('admin.testimonials.index') }}">
+                <a href="{{ route('admin.testemonials.index') }}">
                     <i class="iconsmind-Geo2"></i> <span>Testimonials</span>
                 </a>
             </li>

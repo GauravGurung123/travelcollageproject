@@ -16,6 +16,7 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -23,6 +24,7 @@
                             @foreach($countries as $country)
                                 <tr>
                                     <td>{{$country->name}}</td>
+                                    <td><img src="{{ $country->line_image }}"/></td>
                                     <td class="d-flex">
                                         {{-- {-- @can('update-'.$slug)       --}} 
                                         <a href="{{ route('admin.countries.edit', $country->id)}}"

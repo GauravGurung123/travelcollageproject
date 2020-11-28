@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestemonialsTable extends Migration
+class AddDurationToPackages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTestemonialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('testemonials', function (Blueprint $table) {
-            $table->id();
-            $table->string('image')->nullable();
-            $table->text('content')->nullable();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('packages', function (Blueprint $table) {
+            $table->string('duration');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateTestemonialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('testemonials');
+        Schema::table('packages', function (Blueprint $table) {
+            $table->string('duration');
+        });
     }
 }

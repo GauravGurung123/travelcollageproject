@@ -12,19 +12,35 @@
        <div class="box-body">
          <div class="row">
            <div class="col">
-           <form method="POST" action="{{ route('admin.packages.store') }}">
+           <form method="POST" action="{{ route('admin.packages.store') }}" enctype="multipart/form-data">
             @csrf
                 <div class="form-group">
-                    <h5>Name <span class="text-danger">*</span></h5>
+                    <h5>Place Name <span class="text-danger">*</span></h5>
                     <div class="controls">
                         <input type="text" name="name" class="form-control" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                 </div>
+                <div class="form-group">
+                  <h5>Durations <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                      <input type="text" name="duration" class="form-control" placeholder="_ Days and _ Nights" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+              </div>
                 <div class="form-group">
 						<h5>Description <span class="text-danger">*</span></h5>
 						<div class="controls">
 							<textarea name="description" id="textarea" rows="10" class="form-control" aria-invalid="false"></textarea>
 						<div class="help-block"></div></div>
-                </div>
+            </div>
+            <div class="form-group">
+              <h5>Choose Country<span class="text-danger">*</span></h5>
+              <div class="controls">
+                  <select name="country_id" class="form-control" required>
+                      <option disabled>Select Country</option>
+                      @foreach($countries as $country)
+                      <option value="{{ $country->id }}">{{ $country->name }}</option>
+                      @endforeach
+                  </select>
+              </div>
+          </div>
                 <div class="form-group">
                   <h5>Price <span class="text-danger">*</span></h5>
                   <div class="controls">

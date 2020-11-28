@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middl
     Route::resource('packages','PackageController');
     Route::resource('blogs','BlogController');
     Route::resource('visitors','VisitorController');
-    Route::resource('testimonials','TestimonialController');
+    Route::resource('testemonials','TestemonialController');
     Route::resource('pages','PageController');
     Route::resource('roles','RoleController');
     Route::resource('permissions','PermissionController');

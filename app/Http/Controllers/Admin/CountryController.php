@@ -38,12 +38,12 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         Country::create([
-            'name' => $request->name,    
-            'image' => $request->image,
+            'name' => $request->name,
+            'image' => $request->image,    
             'description' => $request->description
         ]);
-
         return redirect()->route('admin.countries.index');
     }
 
@@ -81,7 +81,7 @@ class CountryController extends Controller
     {
         $countries=Country::find($id);
         $countries->update([
-            'name' => $request->name,    
+            'name' => $request->name,
             'image' => $request->image,
             'description' => $request->description
         ]);
