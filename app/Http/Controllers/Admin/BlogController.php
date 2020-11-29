@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blogs=Blog::all();
+        return view('admin.blogs.index', compact('blogs'));
     }
 
     /**
@@ -24,7 +26,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.blogs.add-new');
     }
 
     /**
@@ -35,7 +37,12 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Blog::create([
+            'name' => $request->name,
+            'image' => $request->image,    
+            'description' => $request->description,
+        ]);
+        return redirect()->route('admin.blogs.index');
     }
 
     /**
@@ -57,7 +64,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blogs=Blog::where('id',$id)->firstOrFail();
+        return view('admin.blogs.edit', compact('blogs'));
     }
 
     /**
@@ -69,7 +77,13 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $blogs=Blog::find($id);
+        $blogs->update([
+            'name' => $request->name,
+            'image' => $request->image,
+            'description' => $request->description,
+        ]);
+        return redirect()->back()->withSuccess('Your blog has been updated successfully');
     }
 
     /**
@@ -80,6 +94,7 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Blog::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your blog has been Deleted');
     }
 }

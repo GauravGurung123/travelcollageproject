@@ -21,19 +21,19 @@
                           </tr>
                             </thead>
                             <tbody>
-                            @foreach($testemonials as $testemonial)
+                            @foreach($blogs as $blog)
                             <tr>
-                            <td>{{$testemonial->name}}</td>
-                            <td><img src="{{ $testemonial->line_image }}"/></td>
+                            <td>{{$blog->name}}</td>
+                            <td><img src="{{ $blog->line_image }}"/></td>
                             <td class="d-flex">
                                                                        {{-- {-- @can('update-'.$slug)       --}} 
-                                        <a href="{{ route('admin.testemonials.edit', $testemonial->id)}}"
+                                        <a href="{{ route('admin.blogs.edit', $blog->id)}}"
                                             class="btn btn-sm btn-success-outline" data-original-title="Delete">
                                             <i class="ti-pencil" aria-hidden="true"></i></a>
                                         {{-- @endcan --}}
                                         {{--  --}}
                                         {{-- @can('delete-'.$slug)       --}}
-                                        <form action="{{route('admin.testemonials.destroy', $testemonial->id) }}" method="post">
+                                        <form action="{{route('admin.blogs.destroy', $blog->id) }}" method="post">
                                             <input type="hidden" name="_method" value="DELETE">
                                                 @csrf
                                         <button data-toggle="tooltip" data-original-title="Delete" 
@@ -48,10 +48,10 @@
                             <tfoot>
                             <tr> 
                             </tr>
-                            {{-- @if (\Request::route()->getName()=='admin.testemonials.index')
+                            {{-- @if (\Request::route()->getName()=='admin.blogs.index')
                             @can('create-testimonials')         --}}
-                        <a href="{{ route('admin.testemonials.create') }}" class="btn btn-success mb-5">
-                            <i class="fa fa-plus"></i> Add New Testimonial</a>
+                        <a href="{{ route('admin.blogs.create') }}" class="btn btn-success mb-5">
+                            <i class="fa fa-plus"></i> Add New Blog</a>
                             {{-- @endcan --}}
                     {{-- @endif         --}}
                     </tfoot>
