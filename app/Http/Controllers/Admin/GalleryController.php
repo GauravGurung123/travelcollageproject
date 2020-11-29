@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-class RoleController extends Controller
+
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-      $roles=Role::all();   
-      return view('admin.roles.index', compact('roles'));  
+        //
     }
 
     /**
@@ -26,8 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions=Permission::all();
-        return view('admin.roles.add-new', compact('permissions'));
+        //
     }
 
     /**
@@ -38,15 +35,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:roles,name',
-        ]);
-        // \dd($request->all());
-        $role=Role::create([
-            'name' => $request->name
-        ]);
-        $role->givePermissionTo($request->permission);
-        return redirect()->route('admin.roles.index');
+        //
     }
 
     /**
@@ -68,9 +57,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $permissions=Permission::all();
-        $role=Role::where('id',$id)->with('permissions')->firstOrFail();
-        return view('admin.roles.edit', compact('role','permissions'));
+        //
     }
 
     /**
@@ -82,18 +69,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
-        // $request->validate([
-        //     'name' => 'required|unique:roles,name,',
-        // ]);
-        $role=Role::find($id);
-        $role->update([   
-            'name' => $request->name    
-        ]);
-        // dd($role,$request->permission);
-        $role->syncPermissions($request->permission);
-
-        return redirect()->back()->withSuccess('Your Role has been updated successfully');    
+        //
     }
 
     /**
@@ -104,7 +80,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::where('id',$id)->first()->delete();
-        return redirect()->back()->withSuccess('Your Role has been Deleted');
+        //
     }
 }

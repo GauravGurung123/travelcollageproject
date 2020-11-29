@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -14,7 +15,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $permissions=Permission::all();   
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.permissions.add-new');
     }
 
     /**
@@ -35,7 +37,12 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        Permission::create([
+            'name' => $request->name
+        ]);
+        
+        return redirect()->route('admin.permissions.index');
     }
 
     /**
@@ -57,7 +64,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+    
+        $permission=Permission::where('id',$id)->firstOrFail();
+        return view('admin.permissions.edit', compact('permission'));
     }
 
     /**
@@ -69,7 +78,12 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permissions=Permission::find($id);
+        $permissions->update([   
+            'name' => $request->name    
+        ]);
+
+        return redirect()->back()->withSuccess('Your Permission has been updated successfully');  
     }
 
     /**
@@ -80,6 +94,7 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Permission::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your Permission has been Deleted');
     }
 }
