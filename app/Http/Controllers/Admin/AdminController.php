@@ -95,6 +95,8 @@ class AdminController extends Controller
         
         $user=User::find($id);
         $user->update([     
+            'image' => $request->image,    
+            'content' => $request->content,    
             'name' => $request->name,  
             'role' => $request->role,  
         ]);

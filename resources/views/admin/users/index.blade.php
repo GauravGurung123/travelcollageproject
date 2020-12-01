@@ -15,6 +15,7 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <td>Avatar</td>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Action</th>
@@ -24,7 +25,8 @@
                             <tbody>
                             @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->name }}</td>
+                                <td>><img class="avatar" src="{{$user->thumbnail_image}}" alt="...">{{ $user->name }}</td>
+                                <td></td>
                                 <td>{{ $user->email}}</td>
                         {{-- @dd($user->roles) --}}
                                 <td>{{ isset($user->roles[0]) ? ucfirst($user->roles[0]->name) : '' }}</td>

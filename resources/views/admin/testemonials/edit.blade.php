@@ -28,7 +28,7 @@
           </div>
        </div>
                 <div class="form-group">
-                    <h5>Client Avatar</h5>
+                    <h5>Avatar</h5>
                     @if ( $testemonials->image)
                     <img src="{{ $testemonials->thumbnail_image }}"/>
                     @endif

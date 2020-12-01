@@ -20,6 +20,20 @@
                     <div class="controls">
                         <input type="text" value="{{ $user->name }}" name="name" class="form-control" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                  </div>
+                 <div class="form-group">
+                  <h5>Contact No. <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                      <input type="text" value="{{ $user->contact }}" name="contact" class="form-control" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+               </div>
+                 <div class="form-group">
+                  <h5>Avatar</h5>
+                  @if ( $user->image)
+                  <img src="{{ $user->thumbnail_image }}"/>
+                  @endif
+                  <div class="controls">
+                       <input type="file" name="image" class="form-control"> <div class="help-block"></div>
+                  </div>
+               </div>
                 <div class="form-group">
                     <h5>Select Role<span class="text-danger">*</span></h5>
                         <div class="controls">
@@ -31,13 +45,7 @@
                                 </select>
                                 </div>
                 </div>  
-                {{-- <div class="form-group">
-                  <h5>Featured</h5>
-                  <div class="controls">
-                  <input type="checkbox" id="checkbox_featured" name="featured" value="1">
-                  <label for="checkbox_featured">Featured</label>
-                </div>								
-              </div>                   --}}
+
                    <div class="text-xs-right">
                        <button type="submit" class="btn btn-info">Update</button>
                    </div>

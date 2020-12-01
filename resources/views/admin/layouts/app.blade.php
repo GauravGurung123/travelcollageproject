@@ -45,15 +45,10 @@
         </a>
         <!-- Logo -->
         <a href="{{ route('home') }}" class="logo">
-            <!-- mini logo -->
-            <b class="logo-mini">
-                <span class="light-logo"><img src="{{ asset('images/logo-light.png') }}" alt="Light logo"></span>
-                <span class="dark-logo"><img src="{{ asset('images/logo-dark.png') }}" alt="Dark logo"></span>
-            </b>
             <!-- logo-->
             <span class="logo-lg">
-			  <img src="{{ asset('images/logo-dark.png') }}" alt="light logo" class="light-logo">
-			  <img src="{{ asset('images/logo-dark.png') }}" alt="Dark logo" class="dark-logo">
+			  <img src="{{ asset('images/footer_logo.png') }}" alt="light logo" class="light-logo">
+			  <img src="{{ asset('images/footer_logo.png') }}" alt="Dark logo" class="dark-logo">
 		  </span>
         </a>
         <!-- Header Navbar -->
@@ -126,11 +121,11 @@
                         <ul class="dropdown-menu scale-up">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../images/user5-128x128.jpg" class="float-left rounded-circle" alt="User Image">
+                                <img src="" class="float-left rounded-circle" alt="User Image">
 
                                 <p>
-                                    Johon
-                                    <small class="mb-5">jb@gmail.com</small>
+                                    {{ auth()->user()->name }}
+                                    <small class="mb-5">{{ auth()->user()->email }}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -140,10 +135,15 @@
                                         <a href="route('profile.show')"><i class="ion ion-person"></i> My Profile</a>
                                     </div>
 
-
                                     <div role="separator" class="divider col-12"></div>
                                     <div class="col-12 text-left">
-                                        <a href="{{ route('logout') }}"><i class="fa fa-power-off"></i> Logout</a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit">Logout</button>
+
+                                       {{-- <a href="{{ route('logout') }}"><i class="fa fa-power-off"></i> Logout</a> --}}
+                                    </form>
+{{--                                        --}}
                                     </div>
                                 </div>
                                 <!-- /.row -->

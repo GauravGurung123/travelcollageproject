@@ -53,3 +53,6 @@ Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middl
     Route::resource('settings','SettingsController');
 });
 
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+

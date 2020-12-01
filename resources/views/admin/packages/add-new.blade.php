@@ -41,6 +41,13 @@
                   </select>
               </div>
           </div>
+                          {{-- <div class="form-group">
+                  <h5>Featured</h5>
+                  <div class="controls">
+                  <input type="checkbox" id="checkbox_featured" name="featured" value="1">
+                  <label for="checkbox_featured">Featured</label>
+                </div>								
+              </div>                   --}}
                 <div class="form-group">
                   <h5>Price <span class="text-danger">*</span></h5>
                   <div class="controls">
