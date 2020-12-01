@@ -26,10 +26,24 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email}}</td>
-                        
+                        {{-- @dd($user->roles) --}}
                                 <td>{{ isset($user->roles[0]) ? ucfirst($user->roles[0]->name) : '' }}</td>
                                 <td class="d-flex">
-                                                      
+                                             {{-- {-- @can('update)       --}} 
+                             <a href="{{ route('admin.users.edit', $role->id)}}"
+                                class="btn btn-sm btn-success-outline" data-original-title="Delete">
+                                <i class="ti-pencil" aria-hidden="true"></i></a>
+                            {{-- @endcan --}}
+                            {{--  --}}
+                            {{-- @can('delete')       --}}
+                            <form action="{{route('admin.users.destroy', $role->id) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                    @csrf
+                            <button data-toggle="tooltip" data-original-title="Delete" 
+                            type="submit" id="btnDelete" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger-outline">
+                                <i class="ti-trash" aria-hidden="true"></i></button>
+                                </form> 
+                            {{-- @endcan --}}          
                                 </td>
                             </tr>
                             @endforeach

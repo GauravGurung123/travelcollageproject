@@ -25,7 +25,7 @@
                        <div class="controls">
                            <input type="email" name="email" class="form-control" required data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                    </div>
-                     {{-- <div class="form-group">
+                     <div class="form-group">
                         <h5>Select Role<span class="text-danger">*</span></h5>
                             <div class="controls">
                                 <select name="role" class="form-control" required>
@@ -35,7 +35,7 @@
                                         @endforeach
                                     </select>
                                     </div>
-                    </div> --}}
+                    </div>
                      {{-- <div class="form-group">
                         <h5>Featured</h5>
                         <div class="controls">

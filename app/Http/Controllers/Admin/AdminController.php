@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +16,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $role=Role::all();
+        $users=User::all();
+        return view('admin.users.index', compact('users','role'));
     }
 
     /**
@@ -24,7 +28,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $roles=Role::all();
+        return view('admin.users.add-new', compact('roles')); 
     }
 
     /**
@@ -35,7 +40,21 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+        
+        $user=User::create([
+            'name' => $request->name,
+            'role' => $request->role,
+            'email' => strtolower($request->input('email')),
+            'password' => bcrypt($request->input('password'))   
+        ]);
+        $user->assignRole($request->role);
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -57,7 +76,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles=Role::all();
+        $user=User::where('id',$id)->firstOrFail();
+        return view('admin.users.edit', compact('user','roles'));
     }
 
     /**
@@ -69,7 +90,16 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        
+        $user=User::find($id);
+        $user->update([     
+            'name' => $request->name,  
+        ]);
+        $user->syncRoles($request->role);
+        return redirect()->back()->withSuccess('Your User has been updated successfully');
     }
 
     /**
@@ -80,6 +110,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your User has been Deleted');
     }
 }
