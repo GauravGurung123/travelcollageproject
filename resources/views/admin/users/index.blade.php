@@ -30,13 +30,13 @@
                                 <td>{{ isset($user->roles[0]) ? ucfirst($user->roles[0]->name) : '' }}</td>
                                 <td class="d-flex">
                                              {{-- {-- @can('update)       --}} 
-                             <a href="{{ route('admin.users.edit', $role->id)}}"
+                             <a href="{{ route('admin.users.edit', $user->id)}}"
                                 class="btn btn-sm btn-success-outline" data-original-title="Delete">
                                 <i class="ti-pencil" aria-hidden="true"></i></a>
                             {{-- @endcan --}}
                             {{--  --}}
                             {{-- @can('delete')       --}}
-                            <form action="{{route('admin.users.destroy', $role->id) }}" method="post">
+                            <form action="{{route('admin.users.destroy', $user->id) }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                     @csrf
                             <button data-toggle="tooltip" data-original-title="Delete" 

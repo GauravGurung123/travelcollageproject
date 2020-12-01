@@ -16,9 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $role=Role::all();
         $users=User::all();
-        return view('admin.users.index', compact('users','role'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -97,6 +96,7 @@ class AdminController extends Controller
         $user=User::find($id);
         $user->update([     
             'name' => $request->name,  
+            'role' => $request->role,  
         ]);
         $user->syncRoles($request->role);
         return redirect()->back()->withSuccess('Your User has been updated successfully');

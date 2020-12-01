@@ -13,6 +13,7 @@ class User extends Authenticatable
     use HasRoles;
 
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
-    protected $guard_name = 'sanctum';
+    protected $guard_name = 'web';
 
 
     /**
