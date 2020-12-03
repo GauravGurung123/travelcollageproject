@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
+use App\FrontUser;
 use Illuminate\Http\Request;
 
 class VisitorController extends Controller
@@ -14,7 +16,8 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        //
+        $visitors=FrontUser::all();
+        return view('admin.visitors.index', compact('visitors'));
     }
 
     /**
@@ -24,7 +27,8 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        //
+        $roles=Role::all();
+        return view('admin.visitors.add-new', compact('roles')); 
     }
 
     /**
@@ -35,7 +39,21 @@ class VisitorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:visitors,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+        
+        $FrontUser=FrontUser::create([
+            'name' => $request->name,
+            'role' => $request->role,
+            'email' => strtolower($request->input('email')),
+            'password' => bcrypt($request->input('password'))   
+        ]);
+        $FrontUser->assignRole($request->role);
+
+        return redirect()->route('admin.visitors.index');
     }
 
     /**
@@ -57,7 +75,9 @@ class VisitorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles=Role::all();
+        $FrontUser=FrontUser::where('id',$id)->firstOrFail();
+        return view('admin.visitors.edit', compact('FrontUser','roles'));
     }
 
     /**
@@ -69,7 +89,19 @@ class VisitorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        
+        $FrontUser=FrontUser::find($id);
+        $FrontUser->update([     
+            'image' => $request->image,    
+            'content' => $request->content,    
+            'name' => $request->name,  
+            'role' => $request->role,  
+        ]);
+        $FrontUser->syncRoles($request->role);
+        return redirect()->back()->withSuccess('Your FrontUser has been updated successfully');
     }
 
     /**
@@ -80,6 +112,7 @@ class VisitorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        FrontUser::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your FrontUser has been Deleted');
     }
 }

@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middl
     Route::resource('roles','RoleController');
     Route::resource('permissions','PermissionController');
     Route::resource('users','AdminController');
+    Route::resource('visitors','VisitorController');
     Route::resource('settings','SettingsController');
 });
 

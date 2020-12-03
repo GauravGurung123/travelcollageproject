@@ -2,24 +2,50 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use App\Traits\ImageHelpersTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
-class Country extends Model
+class FrontUser extends Model
 {
-    use ImageHelpersTrait;
+    use HasFactory, ImageHelpersTrait;
+    use HasRoles;
+
+    protected $table='front_users';
 
     protected $guarded=['id'];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+    protected $guard_name = 'web';
 
-    public function packages()
-    {
-        return $this->hasMany(Package::class);
-    }
 
-    
-    // |--------------------------------------------------------------------------
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+      // |--------------------------------------------------------------------------
     // | MUTATORS
     // |--------------------------------------------------------------------------
     
@@ -30,7 +56,7 @@ class Country extends Model
     {
         $attribute_name = "image";
         $disk = config('filesystems.default');
-        $destination_path = "uploads/country";
+        $destination_path = "uploads/avatar";
         $sizes=[[200,140,'thumbnail'],[150,26,'line'],[360,240,'small'],[760,400,'medium']];
         $this->uploadFileToDiskWithResize($value, $attribute_name, $disk, $destination_path,$sizes);
 
@@ -72,6 +98,5 @@ class Country extends Model
     {
         return $this->image?asset(Storage::url($this->image)):asset('assets/img/blog_placeholder.png');
     }
-}
 
-    
+}

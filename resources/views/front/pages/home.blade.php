@@ -76,72 +76,19 @@
                 </div>
             </div>
             <div class="row">
+            @foreach ($packages as $package)
                 <div class="col-lg-4 col-md-6">
                     <div class="single_destination">
                         <div class="thumb">
                             <img src="front-asset/img/destination/1.png" alt="">
                         </div>
                         <div class="content">
-                            <p class="d-flex align-items-center">Italy <a href="travel_destination.html">  07 Places</a> </p>
+                            <p class="d-flex align-items-center">{{ $package->country->name }}  <a href="travel_destination.html">  07 Places</a> </p>
                             
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="front-asset/img/destination/2.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Brazil <a href="travel_destination.html">  03 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="front-asset/img/destination/3.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">America <a href="travel_destination.html">  10 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="front-asset/img/destination/4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Nepal <a href="travel_destination.html">  02 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="front-asset/img/destination/5.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Maldives <a href="travel_destination.html">  02 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_destination">
-                        <div class="thumb">
-                            <img src="front-asset/img/destination/6.png" alt="">
-                        </div>
-                        <div class="content">
-                            <p class="d-flex align-items-center">Indonesia <a href="travel_destination.html">  05 Places</a> </p>
-                            
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

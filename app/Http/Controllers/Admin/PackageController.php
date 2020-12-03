@@ -85,7 +85,8 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {        
+    {     
+        // dd($request->country_id);   
         $packages=Package::find($id);
         $packages->update([
             'name' => $request->name,  

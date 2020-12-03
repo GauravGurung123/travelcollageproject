@@ -80,10 +80,19 @@
                                     </div>
                                     <div class="social_links d-none d-xl-block">
                                         <ul>
-                        
-                                            <a class="boxed-btn2" href="#">SignUp</a>
-                                            <a class="boxed-btn1" href="#">SignIn</a>
-                                            
+                                            @if (!auth('front_users')->check())                        
+                                            <a class="boxed-btn2" href="{{ route('signup') }}">SignUp</a>
+                                            <a class="boxed-btn1" href="{{ route('signin') }}">SignIn</a>
+                                            @else
+                                            <a href="{{ route('dashboard.'.strtolower(auth('front_users')->user()->user_type)) }}" class="btn small">Dashboard</a>
+                                            <a class="btn small" href="{{ route('signout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('signout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('signout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        @endif
                                         </ul>
                                     </div>
                                 </div>

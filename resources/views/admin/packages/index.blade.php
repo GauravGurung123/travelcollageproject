@@ -15,7 +15,8 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Place</th>
+                                <th>Country</th>
                                 <td>Durations</td>
                                 <td>Image</td>
                                 <th>Actions</th>
@@ -25,6 +26,7 @@
                             @foreach($packages as $package)
                                 <tr>
                                     <td>{{$package->name}}</td>
+                                    <td>{{$package->country->name}}</td>
                                     <td>{{ $package->duration }}</td>
                                     <td><img src="{{ $package->line_image }}"/></td>
                                     <td class="d-flex">
