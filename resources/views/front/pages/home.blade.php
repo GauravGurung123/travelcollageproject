@@ -7,7 +7,7 @@
         <div class="slider_active owl-carousel">
             
             @foreach ($countries as $country)
-            <div class="single_slider  d-flex align-items-center slider_bg_1 overlay">
+            <div class="single_slider  d-flex align-items-center slider_bg_1 overlay" style="background-image: url({{asset($country->medium_image)}});">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-md-12">
