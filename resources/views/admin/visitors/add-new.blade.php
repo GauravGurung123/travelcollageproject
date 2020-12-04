@@ -12,7 +12,7 @@
        <div class="box-body">
          <div class="row">
            <div class="col">
-           <form method="POST" action="{{ route('admin.users.store') }}">
+           <form method="POST" action="{{ route('admin.visitors.store') }}" enctype="multipart/form-data">
             @csrf
                    <div class="form-group">
                     <h5>User Name <span class="text-danger">*</span></h5>
@@ -36,6 +36,7 @@
                                     </select>
                                     </div>
                     </div>
+                    
                      {{-- <div class="form-group">
                         <h5>Featured</h5>
                         <div class="controls">
@@ -56,7 +57,13 @@
                             <h5>Repeat Password<span class="text-danger">*</span></h5>
                             <div class="controls">
                                 <input type="password" name="password_confirmation" data-validation-match-match="password" class="form-control" required> <div class="help-block"></div></div>
-                        </div>                    
+                        </div>   
+                        <div class="form-group">
+                          <h5>Avatar</h5>
+                            <div class="controls">
+                                <input type="file" name="image" class="form-control"> <div class="help-block"></div>
+                            </div>
+                          </div>                 
                    <div class="text-xs-right">
                        <button type="submit" class="btn btn-info">Add User</button>
                    </div>

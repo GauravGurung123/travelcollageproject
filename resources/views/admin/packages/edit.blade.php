@@ -26,7 +26,7 @@
                     <select name="country_id" class="form-control" required>
                       <option disabled>Select preferred job catagory</option>
                       @foreach($countries as $country)
-                          <option {{ $packages->country_id == $country->name ? 'selected' : '' }} value="{{ $country->id }}">{{ $country->name }}</option>
+                          <option {{ $packages->country_id == $country->name ? 'selected' : '' }} value="{{ $country->id }}">{{ $packages->country->name }}</option>
                       @endforeach
                     </select>
                   </div>

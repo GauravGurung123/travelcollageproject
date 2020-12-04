@@ -25,8 +25,8 @@
                             <tbody>
                             @foreach($visitors as $visitor)
                             <tr>
-                                <td>><img class="avatar" src="{{$visitor->thumbnail_image}}" alt="...">{{ $visitor->name }}</td>
-                                <td></td>
+                                <td>{{ $visitor->name }}</td>
+                                <td><img class="avatar" src="{{$visitor->line_image}}"></td>
                                 <td>{{ $visitor->email}}</td>
                         {{-- @dd($visitor->roles) --}}
                                 <td>{{ isset($visitor->roles[0]) ? ucfirst($visitor->roles[0]->name) : '' }}</td>

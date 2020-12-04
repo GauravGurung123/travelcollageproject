@@ -80,7 +80,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single_destination">
                         <div class="thumb">
-                            <img src="front-asset/img/destination/1.png" alt="">
+                            <img src="{{ $package->country->small_image }}" alt="">
                         </div>
                         <div class="content">
                             <p class="d-flex align-items-center">{{ $package->country->name }}  <a href="travel_destination.html">  07 Places</a> </p>

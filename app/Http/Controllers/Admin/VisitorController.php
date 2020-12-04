@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Role;
-use App\FrontUser;
+use App\Visitor;
 use Illuminate\Http\Request;
 
 class VisitorController extends Controller
@@ -16,7 +16,7 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        $visitors=FrontUser::all();
+        $visitors=Visitor::all();
         return view('admin.visitors.index', compact('visitors'));
     }
 
@@ -45,13 +45,14 @@ class VisitorController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
         
-        $FrontUser=FrontUser::create([
+        $visitors=Visitor::create([
             'name' => $request->name,
+            'image' => $request->image,
             'role' => $request->role,
             'email' => strtolower($request->input('email')),
             'password' => bcrypt($request->input('password'))   
         ]);
-        $FrontUser->assignRole($request->role);
+        $visitors->assignRole($request->role);
 
         return redirect()->route('admin.visitors.index');
     }
@@ -76,8 +77,8 @@ class VisitorController extends Controller
     public function edit($id)
     {
         $roles=Role::all();
-        $FrontUser=FrontUser::where('id',$id)->firstOrFail();
-        return view('admin.visitors.edit', compact('FrontUser','roles'));
+        $visitors=Visitor::where('id',$id)->firstOrFail();
+        return view('admin.visitors.edit', compact('visitors','roles'));
     }
 
     /**
@@ -93,15 +94,15 @@ class VisitorController extends Controller
             'name' => 'required',
         ]);
         
-        $FrontUser=FrontUser::find($id);
-        $FrontUser->update([     
+        $visitors=Visitor::find($id);
+        $visitors->update([     
             'image' => $request->image,    
             'content' => $request->content,    
             'name' => $request->name,  
             'role' => $request->role,  
         ]);
-        $FrontUser->syncRoles($request->role);
-        return redirect()->back()->withSuccess('Your FrontUser has been updated successfully');
+        $visitors->syncRoles($request->role);
+        return redirect()->back()->withSuccess('Your visitors has been updated successfully');
     }
 
     /**
@@ -112,7 +113,7 @@ class VisitorController extends Controller
      */
     public function destroy($id)
     {
-        FrontUser::where('id',$id)->first()->delete();
-        return redirect()->back()->withSuccess('Your FrontUser has been Deleted');
+        Visitor::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your visitors has been Deleted');
     }
 }
