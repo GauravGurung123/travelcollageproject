@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Setting;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller

@@ -5,15 +5,18 @@ namespace App;
 use App\Traits\ImageHelpersTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 use Spatie\Permission\Traits\HasRoles;
 
-class Visitor extends Model
+class Visitor extends User
 {
     use HasFactory, ImageHelpersTrait;
     use HasRoles;
 
 
     protected $guarded=['id'];
+    protected $table='visitors';
+
 
     /**
      * The attributes that are mass assignable.
