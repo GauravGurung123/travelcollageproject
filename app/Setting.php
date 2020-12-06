@@ -3,14 +3,13 @@
 namespace App;
 
 use App\Traits\ImageHelpersTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Setting extends Model
 {
 
-    use HasFactory,ImageHelpersTrait;
+    use ImageHelpersTrait;
 
     protected $guarded=['id'];
 
@@ -37,6 +36,7 @@ class Setting extends Model
     public function getThumbnailImageAttribute()
     {
         if(!$this->image){
+
             return $this->front_image;
         }
         

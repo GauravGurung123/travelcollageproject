@@ -71,6 +71,16 @@ Route::group(['namespace' => 'App\Http\Controllers\Dashboard', 'middleware' => [
     })->name('change');
     Route::patch('/change-password', 'UserController@changePassword')->name('change.password');
 
+    Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/contact-us', 'PagesController@contactUs')->name('contact');
+        Route::get('/about-us', 'PagesController@aboutUs')->name('about');
+        Route::get('/pricings', 'PagesController@pricings')->name('pricings');
+        Route::get('/destinations', 'PagesController@destinations')->name('destinations');
+        Route::get('/gallery', 'PagesController@gallery')->name('gallery');
+        Route::get('/results', 'PagesController@results')->name('results');
+        });
+    
     Route::group(['middleware' => 'visitor'], function () {
         Route::get('/visitor', 'VisitorController@index')->name('visitor');
         Route::patch('/visitor/{user}', 'VisitorController@saveProfile')->name('visitor.save.profile');

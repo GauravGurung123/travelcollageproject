@@ -18,9 +18,15 @@
             <div class="form-group">
               <h5>Name</h5>
               <div class="controls">
-              <input type="text" value="{{ $blogs->name }}" name="name" class="form-control"> <div class="help-block"></div>
+              <input type="text" value="{{ $blogs->title }}" name="title" class="form-control"> <div class="help-block"></div>
               </div>
            </div>
+           <div class="form-group">
+            <h5>Tag</h5>
+            <div class="controls">
+            <input type="text" value="{{ $blogs->tag }}" name="tag" class="form-control"> <div class="help-block"></div>
+            </div>
+         </div>
          <div class="form-group">
           <h5>Description</h5>
           <div class="controls">

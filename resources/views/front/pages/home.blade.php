@@ -277,54 +277,24 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($blogs as $blog)                    
                 <div class="col-lg-4 col-md-6">
                     <div class="single_trip">
                         <div class="thumb">
-                            <img src="front-asset/img/trip/1.png" alt="">
+                        <img src="{{$blog->small_image}}" alt="">
                         </div>
                         <div class="info">
                             <div class="date">
                                 <span>Oct 12, 2019</span>
                             </div>
                             <a href="#">
-                                <h3>Journeys Are Best Measured In
-                                    New Friends</h3>
+                            <h3>{{$blog->description}}</h3>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_trip">
-                        <div class="thumb">
-                            <img src="front-asset/img/trip/2.png" alt="">
-                        </div>
-                        <div class="info">
-                            <div class="date">
-                                <span>Oct 12, 2019</span>
-                            </div>
-                            <a href="#">
-                                <h3>Journeys Are Best Measured In
-                                    New Friends</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_trip">
-                        <div class="thumb">
-                            <img src="front-asset/img/trip/3.png" alt="">
-                        </div>
-                        <div class="info">
-                            <div class="date">
-                                <span>Oct 12, 2019</span>
-                            </div>
-                            <a href="#">
-                                <h3>Journeys Are Best Measured In
-                                    New Friends</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </div>

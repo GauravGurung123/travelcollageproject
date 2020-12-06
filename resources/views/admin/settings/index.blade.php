@@ -1,126 +1,65 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <section class="content">
+    {{-- @dd(Storage::url('')) --}}
+    <div class="row">
+        <div class="col-12">
 
-        <!-- Basic Forms -->
-        <div class="box box-solid box-primary">
-            <div class="box-header with-border">
-                <h6 class="box-subtitle text-white">Settings</h6>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="row">
-                    <div class="col">
-                        <form method="POST" action="{{ route('admin.settings.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <h5>Site Name</h5>
-                                <div class="controls">
-                                    <input type="text" name="site_name" value="{{ setting($settings, 'site_name') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Email</h5>
-                                <div class="controls">
-                                    <input type="email" name="email" value="{{ setting($settings, 'email') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Phone Number</h5>
-                                <div class="controls">
-                                    <input type="text" name="phone_no" value="{{ setting($settings, 'phone_no') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Facebook Link</h5>
-                                <div class="controls">
-                                    <input type="text" name="facebook" value="{{ setting($settings, 'facebook') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Twitter Link</h5>
-                                <div class="controls">
-                                    <input type="text" name="twitter" value="{{ setting($settings, 'twitter') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Instagram Link</h5>
-                                <div class="controls">
-                                    <input type="text" name="instagram" value="{{ setting($settings, 'instagram') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Youtube Link</h5>
-                                <div class="controls">
-                                    <input type="text" name="youtube" value="{{ setting($settings, 'youtube') }}"
-                                           class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Google Analytics</h5>
-                                <div class="controls">
-                                    <textarea name="google_analytics" class="form-control" aria-invalid="false">{{ setting($settings, 'google_analytics') }}</textarea>
-                                <div class="help-block"></div></div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Facebook Pixel Add</h5>
-                                <div class="controls">
-                                    <textarea name="facebook_Pixel" class="form-control" aria-invalid="false">{{ setting($settings, 'facebook_Pixel') }}</textarea>
-                                <div class="help-block"></div></div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Logo</h5>
-                                @if ( setting($settings, 'logo'))
-                                    <img src="{{ asset(Storage::url(setting($settings, 'logo'))) }}"
-                                         style="height: 150px;  "/>
-                                @endif
-                                <div class="controls">
-                                    <input type="file" name="logo" class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h5>Favicon</h5>
-                                @if ( setting($settings, 'favicon'))
-                                    <img src="{{ asset(Storage::url(setting($settings, 'favicon'))) }}"
-                                         style="height: 150px;  "/>
-                                @endif
-                                <div class="controls">
-                                    <input type="file" name="favicon" class="form-control">
-                                    <div class="help-block"></div>
-                                </div>
-                            </div>
-                            
-
-                            <div class="text-xs-right">
-                                <button type="submit" class="btn btn-info">Save Settings</button>
-                            </div>
-                        </form>
-
-                    </div>
-                    <!-- /.col -->
+            <div class="box box-solid box-primary">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Settings</h4>
                 </div>
-                <!-- /.row -->
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>        
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($settings as $setting)
+                                <tr>
+                                    <td>{{$setting->site_name}}</td>
+                                    
+                                    <td class="d-flex">
+                                        {{-- {-- @can('update-'.$slug)       --}} 
+                                        <a href="{{ route('admin.settings.edit', $setting->id)}}"
+                                            class="btn btn-sm btn-success-outline" data-original-title="Delete">
+                                            <i class="ti-pencil" aria-hidden="true"></i></a>
+                                        {{-- @endcan --}}
+                                        {{--  --}}
+                                        {{-- @can('delete-'.$slug)       --}}
+                                        <form action="{{route('admin.settings.destroy', $setting->id) }}" method="post">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                                @csrf
+                                        <button data-toggle="tooltip" data-original-title="Delete" 
+                                        type="submit" id="btnDelete" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger-outline">
+                                            <i class="ti-trash" aria-hidden="true"></i></button>
+                                            </form> 
+                                        {{-- @endcan --}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                                {{-- @can('create-partners') --}}
+                                    <a href="{{ route('admin.settings.create') }}" class="btn btn-success mb-5">
+                                        <i class="fa fa-plus"></i> Add New setting</a>
+                                {{-- @endcan --}}
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
+            <!-- /.box -->
 
-    </section>
+        </div>
+        <!-- /.col -->
+    </div>
 @endsection
 @push('scripts')
 

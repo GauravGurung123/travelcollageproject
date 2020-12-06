@@ -16,7 +16,8 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.index');
+        $settings=Setting::all();
+        return view('admin.settings.index', 'settings');
     }
 
 
@@ -27,7 +28,7 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.settings.add-new');
     }
 
     /**
@@ -38,25 +39,19 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        foreach ($request->except('_token') as $key => $value) {
 
-           $setting = Setting::where('name', $key)->first();
-            if (is_file($value)) {
-                $value = $this->uploadFileToDiskWithResize($value, config('filesystems.default'), 'uploads/setting'  );
-            }
-            if( $setting ) {
-                if ($setting->value == $value) continue;
-                $setting->value = $value;
-                $setting->save();
-            }   else {
-                Setting::create([
-                    'name' => $key,
-                    'value' => $value
-                ]);
-            }
-
-        }
-
+        Setting::create([
+            'site_name' => $request->site_name,
+            'site_top_content' => $request->site_top_content,
+            'site_middle_content' => $request->site_middle_content,
+            'site_bottom_content' => $request->site_bottom_content,
+            'site_fav_icon_image' => $request->site_fav_icon_image,    
+            'site_logo' => $request->site_logo,    
+            'site_email' => $request->site_email,
+            'site_address' => $request->site_address,
+            'site_social_links' => $request->site_social_links,
+            'site_phone_no' => $request->site_phone_no,
+        ]);
         return redirect()->route('admin.settings.index');
     }
 
@@ -79,7 +74,8 @@ class SettingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $settings=Setting::where('id',$id)->firstOrFail();
+        return view('admin.settings.edit', compact('settings'));
     }
 
     /**
@@ -91,7 +87,20 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $settings=Setting::find($id);
+        $settings->update([
+            'site_name' => $request->site_name,
+            'site_top_content' => $request->site_top_content,
+            'site_middle_content' => $request->site_middle_content,
+            'site_bottom_content' => $request->site_bottom_content,
+            'site_fav_icon_image' => $request->site_fav_icon_image,    
+            'site_logo' => $request->site_logo,    
+            'site_email' => $request->site_email,
+            'site_address' => $request->site_address,
+            'site_social_links' => $request->site_social_links,
+            'site_phone_no' => $request->site_phone_no,
+        ]);
+        return redirect()->back()->withSuccess('Your Setting has been updated successfully');
     }
 
     /**
@@ -102,57 +111,8 @@ class SettingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Setting::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your Setting has been Deleted');
     }
-    /**
-     * Handle file upload and DB storage for a file:
-     * - on CREATE
-     *     - stores the file at the destination path
-     *     - generates a name
-     *     - stores the full path in the DB;
-     * - on UPDATE
-     *     - if the value is null, deletes the file and sets null in the DB
-     *     - if the value is different, stores the different file and updates DB value.
-     *
-     * @param string $value            Value for that column sent from the input.
-     * @param string $attribute_name   Model attribute name (and column in the db).
-     * @param string $disk             Filesystem disk used to store files.
-     * @param string $destination_path Path in disk where to store the files.
-     */
-    public function uploadFileToDiskWithResize($file, $disk, $destination_path, $sizes=[], $path=null)
-    {
-
-        // if a new file is uploaded, delete the file from the disk
-        if ($path) {
-            // \Storage::disk($disk)->delete($path);
-        }
-
-        // if the file input is empty, delete the file from the disk
-//        if (is_null($value) && $this->{$attribute_name} != null) {
-//            \Storage::disk($disk)->delete($this->{$attribute_name});
-//            $this->attributes[$attribute_name] = null;
-//        }
-
-        // if a new file is uploaded, store it on disk and its filename in the database
-            // 1. Generate a new file name
-
-            $new_file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).time().'.'.$file->getClientOriginalExtension();
-
-            // 2. Move the new file to the correct path
-            $file_path = $file->storeAs($destination_path, $new_file_name, $disk);
-
-            if (count($sizes)){
-                foreach ($sizes as $resize){
-                    $resi=\Image::make($file)->resize($resize[0], $resize[1]);
-                    \Storage::disk($this->disk)->put($destination_path . '/' . $resize[2].'/'.$new_file_name,$resi->stream(),[
-                        'ACL'=> 'public-read'
-                    ]);
-
-                }
-            }
-            // 3. Save the complete path to the database
-            $public_destination_path = \Str::replaceFirst('joynepal/', '', $destination_path);
-            return $public_destination_path . '/' . $new_file_name;;
-        }
-
+    
 }

@@ -15,15 +15,17 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Avatar</th>
+                                <th>Title</th>
+                                <th>Tags</th>
+                                <th>Image</th>
                                 <th>Actions</th>
                           </tr>
                             </thead>
                             <tbody>
                             @foreach($blogs as $blog)
                             <tr>
-                            <td>{{$blog->name}}</td>
+                            <td>{{$blog->title}}</td>
+                            <td>{{$blog->tag}}</td>
                             <td><img src="{{ $blog->line_image }}"/></td>
                             <td class="d-flex">
                                                                        {{-- {-- @can('update-'.$slug)       --}} 

@@ -38,7 +38,8 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         Blog::create([
-            'name' => $request->name,
+            'tag' => $request->tag,
+            'title' => $request->title,
             'image' => $request->image,    
             'description' => $request->description,
         ]);
@@ -79,7 +80,8 @@ class BlogController extends Controller
     {
         $blogs=Blog::find($id);
         $blogs->update([
-            'name' => $request->name,
+            'title' => $request->title,
+            'tag' => $request->tag,
             'image' => $request->image,
             'description' => $request->description,
         ]);

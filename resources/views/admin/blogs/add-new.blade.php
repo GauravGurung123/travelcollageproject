@@ -17,9 +17,14 @@
             <div class="form-group">
               <h5>Name</h5>
               <div class="controls">
-                   <input type="text" name="name" class="form-control"> <div class="help-block"></div>
+                   <input type="text" name="title" class="form-control"> <div class="help-block"></div>
               </div>
-           </div>
+           </div><div class="form-group">
+            <h5>Tag</h5>
+            <div class="controls">
+                 <input type="text" name="tag" class="form-control"> <div class="help-block"></div>
+            </div>
+         </div>
          <div class="form-group">
           <h5>Content</h5>
           <div class="controls">
