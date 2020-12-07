@@ -11,19 +11,24 @@
     <title>traveltour</title>
 
     <!-- Bootstrap 4.0-->
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets') }}/vendor_components/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- Bootstrap extend-->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap-extend.css">
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/sweetalert/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets') }}/vendor_components/sweetalert/sweetalert.css">
 
     <!-- theme style -->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/master_style.css">
+    <!-- gallery -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/animated-masonry-gallery.css" />
+   
+    <!-- fancybox -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets')}}/vendor_components/lightbox-master/dist/ekko-lightbox.css" />
 
     <!-- NeoX Admin skins -->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/skins/_all-skins.css">
 
-	<link rel="stylesheet" href="{{ asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets')}}/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     
@@ -386,20 +391,68 @@
 <!-- FastClick -->
 <script src="{{ asset('assets') }}/vendor_components/fastclick/lib/fastclick.js"></script>
 <!-- DataTables -->
-<script src="{{ asset('assets/vendor_components/datatable/datatables.min.js') }}"></script>
+<script src="{{ asset('assets') }}/vendor_components/datatable/datatables.min.js"></script>
 <!-- NeoX Admin App -->
 <script src="{{ asset('assets') }}/js/template.js"></script>
-<script src="{{ asset('assets/vendor_components/sweetalert/sweetalert.min.js') }}"></script>
-<script src="{{ asset('/assets/vendor_components/ckeditor/ckeditor.js')}}"></script>
+<script src="{{ asset('assets') }}vendor_components/sweetalert/sweetalert.min.js"></script>
+<script src="{{ asset('assets') }}/vendor_components/ckeditor/ckeditor.js"></script>
 	<!-- NeoX Admin for editor -->
-	<script src="{{asset('/assets/js/pages/editor.js')}}"></script>
+    <script src="{{ asset('assets') }}/js/pages/editor.js"></script>
+<!-- gallery -->
+<script type="text/javascript" src="{{ asset('assets') }}/vendor_components/gallery/js/animated-masonry-gallery.js"></script>
+<script type="text/javascript" src="{{ asset('assets') }}/vendor_components/gallery/js/jquery.isotope.min.js"></script>
+   
+<!-- fancybox -->
+<script type="text/javascript" src="{{ asset('assets') }}/vendor_components/lightbox-master/dist/ekko-lightbox.js"></script>
 
 <!-- NeoX Admin dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('assets') }}/js/pages/dashboard2.js"></script>
-<script src="{{ asset('assets/js/pages/data-table.js') }}"></script>
+<script src="{{ asset('assets') }}js/pages/data-table.js"></script>
 <!-- NeoX Admin for demo purposes -->
 <script src="{{ asset('assets') }}/js/demo.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function($) {
+        // delegate calls to data-toggle="lightbox"
+        $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+            event.preventDefault();
+            return $(this).ekkoLightbox({
+                onShown: function() {
+                    if (window.console) {
+                        return console.log('Checking our the events huh?');
+                    }
+                },
+                onNavigate: function(direction, itemIndex) {
+                    if (window.console) {
+                        return console.log('Navigating ' + direction + '. Current item: ' + itemIndex);
+                    }
+                }
+            });
+        });
+        //Programatically call
+        $('#open-image').click(function(e) {
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        $('#open-youtube').click(function(e) {
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        // navigateTo
+        $(document).delegate('*[data-gallery="navigateTo"]', 'click', function(event) {
+            event.preventDefault();
+            var lb;
+            return $(this).ekkoLightbox({
+                onShown: function() {
+                    lb = this;
+                    $(lb.modal_content).on('click', '.modal-footer a', function(e) {
+                        e.preventDefault();
+                        lb.navigateTo(2);
+                    });
+                }
+            });
+        });
+    });
+    </script>
 @stack('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>

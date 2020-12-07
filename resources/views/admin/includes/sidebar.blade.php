@@ -47,6 +47,11 @@
                     <i class="iconsmind-Geo2"></i> <span>Blogs</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.galleries.index') }}">
+                    <i class="iconsmind-Geo2"></i> <span>Gallery</span>
+                </a>
+            </li>
             {{-- @endcan --}}
             {{-- @can('view-testimonials') --}}
             <li>

@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Gallery;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $galleries=Gallery::all();
+        return view('admin.galleries.index', compact('galleries'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.galleries.add-new');
     }
 
     /**
@@ -35,7 +37,13 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        Gallery::create([
+            'title' => $request->title,
+            'image' => $request->image,    
+            'description' => $request->description,
+        ]);
+        return redirect()->route('admin.galleries.index');
     }
 
     /**
@@ -57,7 +65,8 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $galleries=Gallery::where('id',$id)->firstOrFail();
+        return view('admin.galleries.edit', compact('galleries'));
     }
 
     /**
@@ -69,17 +78,26 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->content);
+        $galleries=Gallery::find($id);
+        $galleries->update([
+            'title' => $request->title,
+            'image' => $request->image,
+            'description' => $request->description,
+        ]);
+        return redirect()->back()->withSuccess('Your Gallery has been updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+    
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        Gallery::where('id',$id)->first()->delete();
+        return redirect()->back()->withSuccess('Your Gallery has been Deleted');
     }
+
 }

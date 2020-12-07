@@ -54,21 +54,16 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="{{ route('home') }}">home</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a class="" href="travel_destination.html">Destination</a></li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                        <li><a href="destination_details.html">Destinations details</a></li>
-                                                        <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
+                                        <li><a href="{{ route('about') }}">About</a></li>
+                                            <li><a class="" href="{{ route('destination') }}">Destination</a></li>
+                                            <li><a class="" href="{{ route('gallery') }}">Gallery</a></li>
                                             <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="blog.html">blog</a></li>
                                                     <li><a href="single-blog.html">single-blog</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="{{ route('contact') }}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>

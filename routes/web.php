@@ -20,23 +20,24 @@ Route::get('/',[
 'uses'=>'Frontend\HomeController@index',
 'as'=>'home',
 ]);
-
+Route::get('/contact',[
+    'uses'=>'Frontend\PagesController@contactUs','Frontend\PagesController@destination',
+    'as'=>'contact',
+    ]);
+Route::get('/destination',[
+'uses'=>'Frontend\PagesController@destination',
+'as'=>'destination',
+]);
+Route::get('/aboutUs',[
+    'uses'=>'Frontend\PagesController@aboutUs',
+    'as'=>'about',
+    ]);
+Route::get('/gallery',[
+    'uses'=>'Frontend\PagesController@gallery',
+    'as'=>'gallery',
+    ]);    
 Auth::routes();
-// Route::get('/dashboard',[
-// 'uses'=>'Admin\DashboardController@index',
-// 'as'=>'admin.',
-// 'middleware'=>['web']
-// ]);
-// Route::get('country', [UserController::class, 'index']);
-// Route::resources([
-//     'index' => CountryController::class,
-// ]);
 
-
-
-//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//    return view('admin.index');
-//})->name('dashboard');
 Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middleware'=>['auth:web', 'verified']], function () {
     Route::get('/', function () {
         return view('admin.index');
@@ -51,6 +52,7 @@ Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middl
     Route::resource('permissions','PermissionController');
     Route::resource('users','AdminController');
     Route::resource('visitors','VisitorController');
+    Route::resource('galleries','GalleryController');
     Route::resource('settings','SettingsController');
 });
 
@@ -71,23 +73,4 @@ Route::group(['namespace' => 'App\Http\Controllers\Dashboard', 'middleware' => [
     })->name('change');
     Route::patch('/change-password', 'UserController@changePassword')->name('change.password');
 
-    Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
-        Route::get('/', 'HomeController@index')->name('home');
-        Route::get('/contact-us', 'PagesController@contactUs')->name('contact');
-        Route::get('/about-us', 'PagesController@aboutUs')->name('about');
-        Route::get('/pricings', 'PagesController@pricings')->name('pricings');
-        Route::get('/destinations', 'PagesController@destinations')->name('destinations');
-        Route::get('/gallery', 'PagesController@gallery')->name('gallery');
-        Route::get('/results', 'PagesController@results')->name('results');
-        });
-    
-    Route::group(['middleware' => 'visitor'], function () {
-        Route::get('/visitor', 'VisitorController@index')->name('visitor');
-        Route::patch('/visitor/{user}', 'VisitorController@saveProfile')->name('visitor.save.profile');
-        Route::post('/blog', 'visitorController@addBlog')->name('visitor.add.blog');
-        Route::get('/blog/{id}/edit', 'visitorController@editBlog')->name('visitor.edit.bkog');
-        Route::patch('/blog/{id}', 'visitorController@updateBlog')->name('visitor.update.blog');
- 
-        Route::delete('/blog/{id}/delete', 'visitorController@deleteBlog')->name('visitor.delete.blog');
-    });
 });

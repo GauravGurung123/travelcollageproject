@@ -11,39 +11,29 @@ class PagesController extends Controller
 {
     public function contactUs()
     {
-        $site=[
-            'title'=>"Contact us",
-        ];
-        return view('pages.contact',compact('site'));
+
+        return view('pages.contact');
     }
 
     public function aboutUs()
     {
-        $site=[
-            'title'=>"About us",
-        ];
-        return view('pages.about',compact('site'));
+        
+        return view('pages.about');
     }
     public function destination()
     {
-        $site=[
-            'title'=>"Destination",
-        ];
-        return view('pages.destination',compact('site'));
+        
+        return view('pages.destination');
     }
     public function gallery()
     {
-        $site=[
-            'title'=>"Gallery",
-        ];
-        return view('pages.gallery',compact('site'));
+        
+        return view('pages.gallery');
     }
    
     public function page(Page $page)
     {
-        $site=[
-            'title'=>$page->title,
-        ];
-        return view('pages.page',compact('site','page'));
+        
+        return view('pages.page');
     }
 }
