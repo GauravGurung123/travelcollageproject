@@ -64,5 +64,14 @@ class Gallery extends Model
         return $this->image?asset(Storage::url($this->image)):asset('assets/img/blog_placeholder.png');
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class);
+    }
+
 
 }

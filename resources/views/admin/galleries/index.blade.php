@@ -26,8 +26,8 @@
                   </div>
               </div>
   <div class="row">
-                    @foreach( $galleries as $gallery)
-                    <div class="col-sm-4" style="background-color: #f8f8f8;">
+  @foreach( $galleries as $gallery)
+  <div class="col-sm-4" style="background-color: #f8f8f8;">
       <small class="d-flex justify-content-end">
           <a href="{{ route('admin.galleries.edit', $gallery->id)}}"
           class="btn btn-sm btn-success-outline" data-original-title="Delete">

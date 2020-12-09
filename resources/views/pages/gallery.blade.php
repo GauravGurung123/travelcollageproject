@@ -11,8 +11,8 @@
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-md-12">
                             <div class="slider_text text-center">
-                                <h3>{{ $gallery->title }}</h3>
-                                <a href="#" class="boxed-btn3">View More</a>
+                                <h3>{{ $gallery->title }}</h3><p>
+                                <a href="#" class="boxed-btn3">View More</a></p>
                             </div>
                         </div>
                     </div>

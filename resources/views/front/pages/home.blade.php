@@ -240,13 +240,14 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="testmonial_active owl-carousel">
+                    @foreach ($testemonials as $testemonial)
+
                         <div class="single_carousel">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                        @foreach ($testemonials as $testemonial)
                                     <div class="single_testmonial text-center">
                                         <div class="author_thumb">
-                                        <img src="{{ $testemonial->thumbnail_image}}" alt="">
+                                        <img src="{{ $testemonial->thumbnail_image}}" style="height: 106pax ; width: 106px;" alt="">
                                         </div>
                                         <p>{{ $testemonial->content }}.</p>
                                         <div class="testmonial_author">

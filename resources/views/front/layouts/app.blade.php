@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="front-asset/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -92,11 +92,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="seach_icon">
+                        <div class="seach_icon">
                                 <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
                                     <i class="fa fa-search"></i>
                                 </a>
-                            </div>
+                        </div>
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
@@ -254,8 +254,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="serch_form">
-            <input type="text" placeholder="Search" >
+            <form method="get" action="{{ route('search') }}">
+            <input type="search" value="{{request()->input('search')}}" name="search" placeholder="Search Country" >
             <button type="submit">search</button>
+        </form>
+
         </div>
       </div>
     </div>

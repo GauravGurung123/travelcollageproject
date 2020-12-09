@@ -27,8 +27,8 @@ class PagesController extends Controller
     }
     public function gallery()
     {
-        
-        return view('pages.gallery');
+        $galleries=Gallery::all();
+        return view('pages.gallery', compact('galleries'));
     }
    
     public function page(Page $page)

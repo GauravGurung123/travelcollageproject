@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Country;
 use App\Http\Controllers\Controller;
+use App\Package;
+use App\Testemonial;
+use App\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +18,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $totalUsers=User::all()->count();
+        $totalCountries=Country::all()->count();
+        $totalPackages=Package::all()->count();
+        $totalTestemonials=Testemonial::all()->count();
+
+        return view('admin.index', compact('totalUsers','totalCountries','totalPackages','totalTestemonials'));
 
     }
 

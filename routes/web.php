@@ -35,13 +35,19 @@ Route::get('/aboutUs',[
 Route::get('/gallery',[
     'uses'=>'Frontend\PagesController@gallery',
     'as'=>'gallery',
+    ]);
+Route::get('/search',[
+    'uses'=>'Frontend\CountryController@search',
+    'as'=>'search',
     ]);    
+
 Auth::routes();
 
 Route::group(['namespace' => 'Admin','prefix'=>'dashboard','as'=>'admin.','middleware'=>['auth:web', 'verified']], function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
+    Route::get('/', 'DashboardController@index')->name('index');
     Route::resource('countries','CountryController');
     Route::resource('packages','PackageController');
     Route::resource('blogs','BlogController');
