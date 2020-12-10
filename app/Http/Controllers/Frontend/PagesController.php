@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Blog;
+use App\Country;
 use App\Http\Controllers\Controller;
 use App\Gallery;
 use App\Page;
@@ -30,7 +32,23 @@ class PagesController extends Controller
         $galleries=Gallery::all();
         return view('pages.gallery', compact('galleries'));
     }
-   
+    public function blogs()
+    {
+        $blogs=Blog::all();
+        $countries=Country::all();
+        return view('pages.blogs', compact('blogs','countries'));
+    }
+       /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function singleBlog($id)
+    {
+        $singleblog=Blog::where('id',$id)->firstOrFail();
+        return view('pages.single-blog', compact('singleblog'));
+    }
     public function page(Page $page)
     {
         

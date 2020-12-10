@@ -42,4 +42,8 @@
 </div>
 
 </div>
+<div class="row">
+  <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+  <div class="elfsight-app-5e509dc8-84d9-40d4-98b2-c78a51c90cc9"></div>
+</div>
 @endsection

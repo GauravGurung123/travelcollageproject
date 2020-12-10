@@ -57,12 +57,7 @@
                                         <li><a href="{{ route('about') }}">About</a></li>
                                             <li><a class="" href="{{ route('destination') }}">Destination</a></li>
                                             <li><a class="" href="{{ route('gallery') }}">Gallery</a></li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a class="" href="{{ route('blogs') }}">Blog</a></li>
                                             <li><a href="{{ route('contact') }}">Contact</a></li>
                                         </ul>
                                     </nav>
@@ -254,7 +249,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="serch_form">
-            <form method="get" action="{{ route('search') }}">
+        <form method="get" action="{{ route('search') }}">
             <input type="search" value="{{request()->input('search')}}" name="search" placeholder="Search Country" >
             <button type="submit">search</button>
         </form>

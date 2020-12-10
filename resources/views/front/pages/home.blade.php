@@ -39,20 +39,11 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="search_wrap">
-                        <form class="search_form" action="#">
+                        <form class="search_form" method="get" action="{{ route('search') }}">
                             <div class="input_field">
-                                <input type="text" placeholder="Where to go?">
+                                <input type="search" name="search" placeholder="Where to go?">
                             </div>
-                            <div class="input_field">
-                                <input id="datepicker" placeholder="Date">
-                            </div>
-                            <div class="input_field">
-                                <select>
-                                    <option data-display="Travel type">Travel type</option>
-                                    <option value="1">Some option</option>
-                                    <option value="2">Another option</option>
-                                </select>
-                            </div>
+
                             <div class="search_btn">
                                 <button class="boxed-btn4 " type="submit" >Search</button>
                             </div>

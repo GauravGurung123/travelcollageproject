@@ -36,6 +36,14 @@ Route::get('/gallery',[
     'uses'=>'Frontend\PagesController@gallery',
     'as'=>'gallery',
     ]);
+Route::get('/blogs',[
+    'uses'=>'Frontend\PagesController@blogs',
+    'as'=>'blogs',
+    ]);
+Route::get('/singleBlog',[
+    'uses'=>'Frontend\PagesController@singleBlog',
+    'as'=>'singleBlog',
+    ]);
 Route::get('/search',[
     'uses'=>'Frontend\CountryController@search',
     'as'=>'search',

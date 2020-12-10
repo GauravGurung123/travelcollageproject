@@ -1,45 +1,6 @@
 @extends('front.layouts.app')
 @section('content')
 
-    <!-- bradcam_area  -->
-    
-    @if ($count==0)
-    <section class="blog_area single-post-area section-padding">
-    <div class="container">
-            <div class="row">
-    <div class="col-lg-8 posts-list">
-    <div class="feature-img">
-        <img class="img-fluid" src="front-asset/img/no.jpg" alt="#">
-    </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="blog_right_sidebar">
-         <x-search />
-                </div>
-            </div>  
-        </div>   
-    </div>
-</section>   
-    @endif
-
-
-    @foreach ($countries as $country)
-    <div class="bradcam_area bradcam_bg_4" style="background-image: url({{asset($country->medium_image)}});"> 
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text text-center">
-                        <h3>{{ $country->name }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
-
-    <!--/ bradcam_area  -->
-  
-     <!--================Blog Area =================-->
      <section class="blog_area single-post-area section-padding">
         @foreach ($countries as $country)
         <div class="container">
@@ -151,6 +112,6 @@
         </div>
         @endforeach
      </section>
-
-
 @endsection
+
+
